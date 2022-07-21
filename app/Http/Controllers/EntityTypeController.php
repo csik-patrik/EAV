@@ -17,7 +17,7 @@ class EntityTypeController extends Controller
     {
         $entityTypes = EntityType::all();
 
-        return $entityTypes;
+        return view('EntityType.index',compact('entityTypes'));
     }
 
     /**
