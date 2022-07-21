@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('entity_types', function (Blueprint $table) {
-            $table->unsignedBigInteger('id');
+            $table->increments('id');
             $table->string('label');
             $table->timestamps();
         });
