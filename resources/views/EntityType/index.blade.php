@@ -27,37 +27,40 @@
             </div>
         </div>
         @endif
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                      <th scope="col">Id</th>
-                      <th scope="col">Label</th>
-                      <th scope="col">Method</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($entityTypes as $entityType)
-                    <tr>
-                        <td>{{$entityType->id}}</td>
-                        <td>{{$entityType->label}}</td>
-                        <td>
-                            <form action="{{ route('entity-type.destroy',$entityType) }}" method="POST">
-
-                                @csrf
-                                @method('DELETE')
+        @if (count($entityTypes)!=0)
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Label</th>
+                            <th scope="col">Method</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($entityTypes as $entityType)
+                        <tr>
+                            <td>{{$entityType->id}}</td>
+                            <td>{{$entityType->label}}</td>
+                            <td>
+                                <form action="{{ route('entity-type.destroy',$entityType) }}" method="POST">
     
-                                <button type="button" class="btn btn-warning">Modify</button>
-                
-                                <button type="submit" onclick="return confirm('Delete {{$entityType->label}} entity type?')" class="btn btn-danger">Delete</button>
-                                
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                  </tbody>
-            </table>
-          </div>
+                                    @csrf
+                                    @method('DELETE')
+    
+                                    <button type="button" class="btn btn-warning">Modify</button>
+                    
+                                    <button type="submit" onclick="return confirm('Delete {{$entityType->label}} entity type?')" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        @else
+            <h1 class="display-4 d-flex justify-content-center">There aren't any entity types in the database.</h1>
+        @endif
     </div>
 
     <!-- Modal -->
