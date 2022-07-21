@@ -37,28 +37,6 @@ class EntityTypeController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\EntityType  $entityType
-     * @return \Illuminate\Http\Response
-     */
-    public function show(EntityType $entityType)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\EntityType  $entityType
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(EntityType $entityType)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateEntityTypeRequest  $request
@@ -78,6 +56,9 @@ class EntityTypeController extends Controller
      */
     public function destroy(EntityType $entityType)
     {
-        //
+        $entityType->delete();
+
+        return redirect()->route('entity-type.index')
+                        ->with('success','Successful delete!');
     }
 }

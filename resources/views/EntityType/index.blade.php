@@ -42,12 +42,19 @@
                         <td>{{$entityType->id}}</td>
                         <td>{{$entityType->label}}</td>
                         <td>
-                            <button type="button" class="btn btn-warning">Modify</button>
-                            <button type="button" class="btn btn-danger">Delete</button>
+                            <form action="{{ route('entity-type.destroy',$entityType) }}" method="POST">
+
+                                @csrf
+                                @method('DELETE')
+    
+                                <button type="button" class="btn btn-warning">Modify</button>
+                
+                                <button type="submit" onclick="return confirm('Delete {{$entityType->label}} entity type?')" class="btn btn-danger">Delete</button>
+                                
+                            </form>
                         </td>
                     </tr>
                     @endforeach
-                    
                   </tbody>
             </table>
           </div>
