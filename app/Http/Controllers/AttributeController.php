@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attribute;
+use App\Models\EntityType;
 use App\Http\Requests\StoreAttributeRequest;
 use App\Http\Requests\UpdateAttributeRequest;
 
@@ -17,17 +18,9 @@ class AttributeController extends Controller
     {
         $attributes = Attribute::all();
 
-        return view('Attribute.index',compact('attributes'));
-    }
+        $entityTypes = EntityType::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('Attribute.index',compact('attributes', 'entityTypes'));
     }
 
     /**
@@ -38,7 +31,12 @@ class AttributeController extends Controller
      */
     public function store(StoreAttributeRequest $request)
     {
-        //
+        $validated = $request->safe()->only(['label', 'type_id']);
+        
+        Attribute::create($validated);
+     
+        return redirect()->route('attribute.index')
+                        ->with('success','Successful insert!');
     }
 
     /**
