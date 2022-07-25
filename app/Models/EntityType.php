@@ -15,6 +15,6 @@ class EntityType extends Model
 
     public function attributes()
     {
-        return $this->hasMany(Attribute::class);
+        return $this->hasMany(Attribute::class, 'type_id', 'id');
     }
 }

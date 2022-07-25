@@ -15,6 +15,6 @@ class Attribute extends Model
 
     public function entityType()
     {
-        return $this->belongsTo(EntityType::class);
+        return $this->belongsTo(EntityType::class, 'type_id', 'id');
     }
 }
