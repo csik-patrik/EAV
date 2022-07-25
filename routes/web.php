@@ -19,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::resource('/entity-type', EntityTypeController::class);
+
+Route::resource('/attribute', EntityTypeController::class);
