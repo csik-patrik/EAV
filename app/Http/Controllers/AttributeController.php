@@ -15,7 +15,9 @@ class AttributeController extends Controller
      */
     public function index()
     {
-        //
+        $attributes = Attribute::all();
+
+        return view('Attribute.index',compact('attributes'));
     }
 
     /**
