@@ -13,4 +13,8 @@ class EntityType extends Model
 
     protected $fillable = ['label'];
 
+    public function attributes()
+    {
+        return $this->hasMany(Attribute::class);
+    }
 }
