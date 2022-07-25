@@ -52,7 +52,7 @@
     
                                     <button type="button" class="btn btn-warning">Modify</button>
                     
-                                    <button type="submit" onclick="return confirm('Delete  entity type?')" class="btn btn-danger">Delete</button>
+                                    <button type="submit" onclick="return confirm('Delete {{$attribute->label}} attribute?')" class="btn btn-danger">Delete</button>
                                 </form>
                             </td>
                         </tr>
