@@ -13,17 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('values_varchars', function (Blueprint $table) {
+        Schema::create('values', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('entity_id');
             $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('attribute_id');
             $table->string('value');
+            $table->timestamps();
 
             $table->foreign('type_id')->references('id')->on('entity_types');
             $table->foreign('attribute_id')->references('id')->on('attributes');
 
-            $table->timestamps();
+
         });
     }
 
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('values_varchars');
+        Schema::dropIfExists('values');
     }
 };
