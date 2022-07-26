@@ -15,7 +15,9 @@ class ValueController extends Controller
      */
     public function index()
     {
-        //
+        $values = Value::all();
+
+        return view('Value.index',compact('values'));
     }
 
     /**
