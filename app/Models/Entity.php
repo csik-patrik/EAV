@@ -15,6 +15,6 @@ class Entity extends Model
 
     public function EntityType()
     {
-        return $this->hasMany(EntityType::class, 'type_id', 'id');
+        return $this->hasOne(EntityType::class, 'id', 'type_id');
     }
 }
