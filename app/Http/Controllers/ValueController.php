@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Value;
 use App\Http\Requests\StoreValueRequest;
 use App\Http\Requests\UpdateValueRequest;
+use App\Models\Entity;
+use App\Models\EntityType;
+use App\Models\Attribute;
 
 class ValueController extends Controller
 {
@@ -17,7 +20,13 @@ class ValueController extends Controller
     {
         $values = Value::all();
 
-        return view('Value.index',compact('values'));
+        $entityTypes = EntityType::all();
+
+        $entities = Entity::all();
+
+        $attributes = Attribute::all();
+
+        return view('Value.index',compact('values', 'entityTypes', 'entities', 'attributes'));
     }
 
     /**

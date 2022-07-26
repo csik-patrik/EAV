@@ -13,7 +13,7 @@
     <div class="container-fluid p-3">
         <div class="row pb-3">
             <div class="col-md-12">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#insertAttributeModal">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#insertValueModal">
                     Assign attribute value to entity
                 </button>
             </div>
@@ -70,27 +70,48 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="insertAttributeModal" tabindex="-1" role="dialog" aria-labelledby="insertAttributeModalLabel" aria-hidden="true">
+    <div class="modal fade" id="insertValueModal" tabindex="-1" role="dialog" aria-labelledby="insertValueModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="insertAttributeModalLabel">Add attribute</h5>
+                <h5 class="modal-title" id="insertValueModalLabel">Assign value to Entity</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('attribute.store') }}" method="POST">
+                    <form action="{{ route('value.store') }}" method="POST">
                         @csrf
                         
-                        <div class="form-group">
-                            <strong>Attribute label:</strong>
-                            <input type="text" name="label" class="form-control mt-3" placeholder="Label">
+                        <strong class="mt-3 mb-3">Entity type:</strong>
+                        <select name="type_id" class="form-control mt-3">
+                            @foreach ($entityTypes as $entityType)
+                                <option value="{{$entityType->id}}">{{$entityType->label}}</option>
+                            @endforeach
+                        </select>
 
-                            
+                        <strong class="mt-3 mb-3">Entity:</strong>
+                        <select name="entity_id" class="form-control mt-3">
+                            @foreach ($entities as $entity)
+                                <option value="{{$entity->id}}">{{$entity->id}}</option>
+                            @endforeach
+                        </select>
+
+                        <strong class="mt-3 mb-3">Attribute:</strong>
+                        <select name="attribute_id" class="form-control mt-3">
+                            @foreach ($attributes as $attribute)
+                                <option value="{{$attribute->id}}">{{$attribute->label}}</option>
+                            @endforeach
+                        </select>
+
+                        <strong>Value:</strong>
+                            <input type="text" name="value" class="form-control mt-3" placeholder="Value">
+
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-success">Add</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
-                        <button type="submit" class="btn btn-success">Add</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        
                     </form>
                 </div>
             </div>
