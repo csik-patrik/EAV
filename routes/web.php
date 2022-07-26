@@ -3,6 +3,7 @@
 use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\EntityController;
 use App\Http\Controllers\EntityTypeController;
+use App\Http\Controllers\ValueController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +26,5 @@ Route::resource('/entity-type', EntityTypeController::class);
 Route::resource('/attribute', AttributeController::class);
 
 Route::resource('/entity', EntityController::class);
+
+Route::resource('/value', ValueController::class);
