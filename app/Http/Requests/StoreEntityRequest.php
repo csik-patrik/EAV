@@ -24,7 +24,7 @@ class StoreEntityRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'type_id' => 'required',
         ];
     }
 }
