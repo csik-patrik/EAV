@@ -47,7 +47,16 @@ class ValueController extends Controller
      */
     public function store(StoreValueRequest $request)
     {
-        //
+        $validated = $request->safe()->only([
+            'type_id',
+            'entity_id',
+            'attribute_id',
+            'value']);
+        
+        Value::create($validated);
+     
+        return redirect()->route('value.index')
+                        ->with('success','Successful insert!');
     }
 
     /**
