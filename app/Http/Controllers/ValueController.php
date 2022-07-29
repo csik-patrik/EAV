@@ -101,6 +101,9 @@ class ValueController extends Controller
      */
     public function destroy(Value $value)
     {
-        //
+        $value->delete();
+
+        return redirect()->route('value.index')
+                        ->with('success','Successful delete!');
     }
 }
