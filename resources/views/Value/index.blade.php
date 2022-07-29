@@ -33,6 +33,16 @@
                 </button>
             </div>
         </div>
+        <div class="row pb-3">
+            <div class="div-lg-12">
+                <h3 class="pl-3">Filters:</h3>
+            </div>
+            @for ($i = 0; $i < count($entityTypes); $i++)
+            <div class="col-md-1">
+                <a class="btn btn-primary" href="{{ route('value.show',$entityTypes[$i]->id) }}">{{$entityTypes[$i]->entity_type_label}}</a>
+            </div>
+            @endfor
+        </div>
         @if ($message = Session::get('success'))
         <div class="row">
             <div class="col-md-6">

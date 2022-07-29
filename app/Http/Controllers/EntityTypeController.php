@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreEntityTypeRequest;
 use App\Http\Requests\UpdateEntityTypeRequest;
 use App\Models\EntityType;
+use Illuminate\Support\Facades\DB;
 
 class EntityTypeController extends Controller
 {
@@ -60,5 +61,8 @@ class EntityTypeController extends Controller
 
         return redirect()->route('entity-type.index')
                         ->with('success', 'Successful delete!');
+    }
+    public function getAllEntityTypes(){
+        return DB::table('entity_types')->get();
     }
 }
