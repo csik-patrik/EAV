@@ -47,7 +47,6 @@
         @endif
         @if (count($values)!=0)
         <div class="container-fluid p-3">
-            <div class="h3">Irányítópult</div>
             <table id="table" 
                 data-show-columns="true"
                 data-search="true"
