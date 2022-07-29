@@ -23,7 +23,7 @@ return new class() extends Migration
 
             $table->foreign('entity_id')->references('id')->on('entities');
             $table->foreign('type_id')->references('id')->on('entity_types');
-            $table->foreign('attribute_id')->references('id')->on('attributes');
+            $table->foreign('attribute_id')->references('attribute_id')->on('attributes');
         });
     }
 
