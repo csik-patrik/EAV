@@ -2,11 +2,26 @@
 
 @section('title') Values @endsection
 
+@section('links')
+    <link href="https://unpkg.com/jquery-resizable-columns@0.2.3/dist/jquery.resizableColumns.css" rel="stylesheet">
+    <link href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css" rel="stylesheet">
+@endsection
+
 @section('scripts')
     <script>
         $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')})
     </script>
+
+    <script src="https://unpkg.com/jquery-resizable-columns@0.2.3/dist/jquery.resizableColumns.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.20.2/dist/extensions/resizable/bootstrap-table-resizable.min.js"></script>
+
+    <script>
+        $(function() {
+          $('#table').bootstrapTable()
+        })
+      </script>
 @endsection
 
 @section('content')
@@ -31,19 +46,25 @@
         </div>
         @endif
         @if (count($values)!=0)
-            <div class="table-responsive">
-                <table class="table table-hover">
-                    <thead>
+        <div class="container-fluid p-3">
+            <div class="h3">Irányítópult</div>
+            <table id="table" 
+                data-show-columns="true"
+                data-search="true"
+                data-show-toggle="true"
+                data-pagination="true"
+                data-resizable="true">
+                <thead>
                         <tr>
-                            <th scope="col">Entity Id</th>
-                            <th scope="col">Entity Type</th>
-                            <th scope="col">Attribute</th>
-                            <th scope="col">Value</th>
-                            <th scope="col">Method</th>
+                            <th data-sortable="true">Entity Id</th>
+                            <th data-sortable="true">Entity Type</th>
+                            <th data-sortable="true">Attribute</th>
+                            <th data-sortable="true">Value</th>
+                            <th data-sortable="false">Method</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @for ($i = 0; $i < count($values); $i++)
+                </thead>
+                <tbody>
+                    @for ($i = 0; $i < count($values); $i++)
                         <tr>
                             <td>{{$values[$i]->entity_id}}</td>
                             <td>{{$values[$i]->entity_type_label}}</td>
@@ -61,10 +82,10 @@
                                 </form>
                             </td>
                         </tr>
-                        @endfor
-                    </tbody>
-                </table>
-            </div>
+                    @endfor 
+                </tbody>
+            </table>
+        </div>
         @else
             <h1 class="display-4 d-flex justify-content-center">There aren't any values in the database.</h1>
         @endif
