@@ -70,7 +70,7 @@
                             <td>{{$values[$i]->attribute_label}}</td>
                             <td>{{$values[$i]->value}}</td>
                             <td>
-                                <form action="{{ route('value.destroy',$values[$i]->id) }}" method="POST">
+                                <form action="{{ route('value.destroy', $values[$i]->id) }}" method="POST">
     
                                     @csrf
                                     @method('DELETE')
@@ -121,7 +121,7 @@
                         <strong class="mt-3 mb-3">Attribute:</strong>
                         <select name="attribute_id" class="form-control mt-3">
                             @for ($i = 0; $i < count($attributes); $i++)
-                                <option value="{{$attributes[$i]->id}}">{{$attributes[$i]->attribute_label}}</option>
+                                <option value="{{$attributes[$i]->attribute_id}}">{{$attributes[$i]->attribute_label}}</option>
                             @endfor
                         </select>
 

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('attributes', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('attribute_id');
             $table->string('attribute_label');
             $table->unsignedBigInteger('type_id');
             $table->foreign('type_id')->references('id')->on('entity_types');

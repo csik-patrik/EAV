@@ -17,12 +17,12 @@ class ValueController extends Controller
     public function index()
     {
         $values = DB::table('values')
-            ->join('attributes', 'values.attribute_id', '=', 'attributes.id')
+            ->join('attributes', 'values.attribute_id', '=', 'attributes.attribute_id')
             ->join('entity_types', 'values.type_id', '=', 'entity_types.id')
             ->select('values.id','values.entity_id', 'entity_types.entity_type_label',
-                        'attributes.attribute_label', 'attributes.id', 'values.value')
+                        'attributes.attribute_label', 'attributes.attribute_id', 'values.value')
             ->orderBy('values.entity_id')
-            ->orderBy('attributes.id')
+            ->orderBy('attributes.attribute_id')
             ->get();
         
         $entityTypes = DB::table('entity_types')->get();
@@ -105,9 +105,9 @@ class ValueController extends Controller
      * @param  \App\Models\Value  $value
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Value $value)
+    public function destroy($id)
     {
-        $value->delete();
+        DB::table('values')->where('id', $id)->delete();
 
         return redirect()->route('value.index')
                         ->with('success','Successful delete!');
