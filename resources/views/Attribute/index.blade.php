@@ -41,18 +41,18 @@
                     <tbody>
                         @foreach ($attributes as $attribute)
                         <tr>
-                            <td>{{$attribute->id}}</td>
-                            <td>{{$attribute->label}}</td>
-                            <td>{{$attribute->entityType->label}}</td>
+                            <td>{{$attribute->attribute_id}}</td>
+                            <td>{{$attribute->attribute_label}}</td>
+                            <td>{{$attribute->entityType->entity_type_label}}</td>
                             <td>
-                                <form action="{{ route('attribute.destroy',$attribute) }}" method="POST">
+                                <form action="{{ route('attribute.destroy',$attribute->attribute_id) }}" method="POST">
     
                                     @csrf
                                     @method('DELETE')
     
                                     <button type="button" class="btn btn-warning">Modify</button>
                     
-                                    <button type="submit" onclick="return confirm('Delete {{$attribute->label}} attribute?')" class="btn btn-danger">Delete</button>
+                                    <button type="submit" onclick="return confirm('Delete {{$attribute->attribute_label}} attribute?')" class="btn btn-danger">Delete</button>
                                 </form>
                             </td>
                         </tr>
@@ -81,12 +81,12 @@
                         
                         <div class="form-group">
                             <strong>Attribute label:</strong>
-                            <input type="text" name="label" class="form-control mt-3" placeholder="Label">
+                            <input type="text" name="attribute_label" class="form-control mt-3" placeholder="Label">
 
                             <strong class="mt-3 mb-3">Attribute type:</strong>
                             <select name="type_id" class="form-control mt-3">
                                 @foreach ($entityTypes as $entityType)
-                                    <option value="{{$entityType->id}}">{{$entityType->label}}</option>
+                                    <option value="{{$entityType->id}}">{{$entityType->entity_type_label}}</option>
                                 @endforeach
                             </select>
                         </div>

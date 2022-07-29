@@ -41,7 +41,7 @@
                         @foreach ($entityTypes as $entityType)
                         <tr>
                             <td>{{$entityType->id}}</td>
-                            <td>{{$entityType->label}}</td>
+                            <td>{{$entityType->entity_type_label}}</td>
                             <td>
                                 <form action="{{ route('entity-type.destroy',$entityType) }}" method="POST">
     

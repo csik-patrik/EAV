@@ -40,7 +40,7 @@
                         @foreach ($entities as $entity)
                         <tr>
                             <td>{{$entity->id}}</td>
-                            <td>{{$entity->EntityType->label}}</td>
+                            <td>{{$entity->EntityType->entity_type_label}}</td>
                             <td>
                                 <form action="{{ route('entity.destroy',$entity) }}" method="POST">
     
@@ -79,7 +79,7 @@
                             <strong class="mt-3 mb-3">Entity type:</strong>
                             <select name="type_id" class="form-control mt-3">
                                 @foreach ($entityTypes as $entityType)
-                                    <option value="{{$entityType->id}}">{{$entityType->label}}</option>
+                                    <option value="{{$entityType->id}}">{{$entityType->entity_type_label}}</option>
                                 @endforeach
                             </select>
                         </div>

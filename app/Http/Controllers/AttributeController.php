@@ -31,7 +31,7 @@ class AttributeController extends Controller
      */
     public function store(StoreAttributeRequest $request)
     {
-        $validated = $request->safe()->only(['label', 'type_id']);
+        $validated = $request->safe()->only(['attribute_label', 'type_id']);
 
         Attribute::create($validated);
 

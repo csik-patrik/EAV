@@ -11,7 +11,7 @@ class Attribute extends Model
 
     protected $table = 'attributes';
 
-    protected $fillable = ['label', 'type_id'];
+    protected $fillable = ['attribute_label', 'type_id'];
 
     public function entityType()
     {
