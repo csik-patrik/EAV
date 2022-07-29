@@ -62,7 +62,9 @@ class EntityTypeController extends Controller
         return redirect()->route('entity-type.index')
                         ->with('success', 'Successful delete!');
     }
-    public function getAllEntityTypes(){
+
+    public function getAllEntityTypes()
+    {
         return DB::table('entity_types')->get();
     }
 }

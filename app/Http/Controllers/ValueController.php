@@ -22,10 +22,10 @@ class ValueController extends Controller
 
         $entities = DB::table('entities')->get();
 
-        $attributes = DB::table('attributes')->get(); 
+        $attributes = DB::table('attributes')->get();
 
         return view('Value.index', compact('values', 'entityTypes',
-                                    'entities', 'attributes'));
+            'entities', 'attributes'));
     }
 
     /**
@@ -72,10 +72,10 @@ class ValueController extends Controller
 
         $entities = DB::table('entities')->get();
 
-        $attributes = DB::table('attributes')->get(); 
+        $attributes = DB::table('attributes')->get();
 
         return view('Value.index', compact('values', 'entityTypes',
-                                    'entities', 'attributes'));
+            'entities', 'attributes'));
 
         return view('Value.index', compact('values'));
     }
@@ -117,10 +117,9 @@ class ValueController extends Controller
                         ->with('success', 'Successful delete!');
     }
 
-    private function getValuesByEntityId($entity_type_id){
-        
-        if($entity_type_id==null){
-            
+    private function getValuesByEntityId($entity_type_id)
+    {
+        if ($entity_type_id == null) {
             $values = DB::table('values')
             ->join('attributes', 'values.attribute_id', '=', 'attributes.attribute_id')
             ->join('entity_types', 'values.type_id', '=', 'entity_types.id')
@@ -135,10 +134,9 @@ class ValueController extends Controller
             ->orderBy('values.entity_id')
             ->orderBy('attributes.attribute_id')
             ->get();
-            
+
             return $values;
-        }
-        else{
+        } else {
             $values = DB::table('values')
             ->join('attributes', 'values.attribute_id', '=', 'attributes.attribute_id')
             ->join('entity_types', 'values.type_id', '=', 'entity_types.id')
@@ -158,6 +156,5 @@ class ValueController extends Controller
 
             return $values;
         }
-        
     }
 }
