@@ -18,7 +18,7 @@ class ValueController extends Controller
      */
     public function index()
     {
-        $values = Value::all();
+        $values = Value::orderBy('entity_id')->get();
 
         $entityTypes = EntityType::all();
 
