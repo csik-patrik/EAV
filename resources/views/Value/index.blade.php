@@ -35,7 +35,6 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">Id</th>
                             <th scope="col">Entity Id</th>
                             <th scope="col">Entity Type</th>
                             <th scope="col">Attribute</th>
@@ -44,15 +43,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($values as $value)
+                        @for ($i = 0; $i < count($values); $i++)
                         <tr>
-                            <td>{{$value->id}}</td>
-                            <td>{{$value->entity_id}}</td>
-                            <td>{{$value->entityType->label}}</td>
-                            <td>{{$value->attribute->label}}</td>
-                            <td>{{$value->value}}</td>
+                            <td>{{$values[$i]->entity_id}}</td>
+                            <td>{{$values[$i]->entity_type_label}}</td>
+                            <td>{{$values[$i]->attribute_label}}</td>
+                            <td>{{$values[$i]->value}}</td>
                             <td>
-                                <form action="{{ route('value.destroy',$value) }}" method="POST">
+                                <form action="{{ route('value.destroy',$values[$i]->id) }}" method="POST">
     
                                     @csrf
                                     @method('DELETE')
@@ -63,7 +61,7 @@
                                 </form>
                             </td>
                         </tr>
-                        @endforeach
+                        @endfor
                     </tbody>
                 </table>
             </div>
@@ -88,23 +86,23 @@
                         
                         <strong class="mt-3 mb-3">Entity type:</strong>
                         <select name="type_id" class="form-control mt-3">
-                            @foreach ($entityTypes as $entityType)
-                                <option value="{{$entityType->id}}">{{$entityType->label}}</option>
-                            @endforeach
+                            @for ($i = 0; $i < count($entityTypes); $i++)
+                                <option value="{{$entityTypes[$i]->id}}">{{$entityTypes[$i]->entity_type_label}}</option>
+                            @endfor
                         </select>
 
                         <strong class="mt-3 mb-3">Entity:</strong>
                         <select name="entity_id" class="form-control mt-3">
-                            @foreach ($entities as $entity)
-                                <option value="{{$entity->id}}">{{$entity->id}}</option>
-                            @endforeach
+                            @for ($i = 0; $i < count($entities); $i++)
+                                <option value="{{$entities[$i]->id}}">{{$entities[$i]->id}}</option>
+                            @endfor
                         </select>
 
                         <strong class="mt-3 mb-3">Attribute:</strong>
                         <select name="attribute_id" class="form-control mt-3">
-                            @foreach ($attributes as $attribute)
-                                <option value="{{$attribute->id}}">{{$attribute->label}}</option>
-                            @endforeach
+                            @for ($i = 0; $i < count($attributes); $i++)
+                                <option value="{{$attributes[$i]->id}}">{{$attributes[$i]->attribute_label}}</option>
+                            @endfor
                         </select>
 
                         <strong>Value:</strong>
