@@ -17,6 +17,7 @@ class Attribute extends Model
     {
         return $this->belongsTo(EntityType::class, 'type_id', 'id');
     }
+
     public function value()
     {
         return $this->belongsToMany(Value::class, 'type_id', 'id');

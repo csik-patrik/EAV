@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Entity;
-use App\Models\EntityType;
 use App\Http\Requests\StoreEntityRequest;
 use App\Http\Requests\UpdateEntityRequest;
-use Dotenv\Parser\Entry;
+use App\Models\Entity;
+use App\Models\EntityType;
 
 class EntityController extends Controller
 {
@@ -21,7 +20,7 @@ class EntityController extends Controller
 
         $entityTypes = EntityType::all();
 
-        return view('Entity.index',compact('entities', 'entityTypes'));
+        return view('Entity.index', compact('entities', 'entityTypes'));
     }
 
     /**
@@ -43,11 +42,11 @@ class EntityController extends Controller
     public function store(StoreEntityRequest $request)
     {
         $validated = $request->safe()->only(['type_id']);
-        
+
         Entity::create($validated);
-     
+
         return redirect()->route('entity.index')
-                        ->with('success','Successful insert!');
+                        ->with('success', 'Successful insert!');
     }
 
     /**
@@ -95,6 +94,6 @@ class EntityController extends Controller
         $entity->delete();
 
         return redirect()->route('entity.index')
-                        ->with('success','Successful delete!');
+                        ->with('success', 'Successful delete!');
     }
 }

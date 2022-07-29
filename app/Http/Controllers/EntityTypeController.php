@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EntityType;
 use App\Http\Requests\StoreEntityTypeRequest;
 use App\Http\Requests\UpdateEntityTypeRequest;
+use App\Models\EntityType;
 
 class EntityTypeController extends Controller
 {
@@ -17,7 +17,7 @@ class EntityTypeController extends Controller
     {
         $entityTypes = EntityType::all();
 
-        return view('EntityType.index',compact('entityTypes'));
+        return view('EntityType.index', compact('entityTypes'));
     }
 
     /**
@@ -29,11 +29,11 @@ class EntityTypeController extends Controller
     public function store(StoreEntityTypeRequest $request)
     {
         $validated = $request->safe()->only(['label']);
-        
+
         EntityType::create($validated);
-     
+
         return redirect()->route('entity-type.index')
-                        ->with('success','Successful insert!');
+                        ->with('success', 'Successful insert!');
     }
 
     /**
@@ -59,6 +59,6 @@ class EntityTypeController extends Controller
         $entityType->delete();
 
         return redirect()->route('entity-type.index')
-                        ->with('success','Successful delete!');
+                        ->with('success', 'Successful delete!');
     }
 }

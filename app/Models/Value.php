@@ -17,6 +17,7 @@ class Value extends Model
         'attribute_id',
         'value',
     ];
+
     public function attribute()
     {
         return $this->hasOne(Attribute::class, 'id', 'attribute_id');

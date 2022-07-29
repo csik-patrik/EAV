@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Value;
 use App\Http\Requests\StoreValueRequest;
 use App\Http\Requests\UpdateValueRequest;
+use App\Models\Value;
 use Illuminate\Support\Facades\DB;
 
 class ValueController extends Controller
@@ -19,20 +19,30 @@ class ValueController extends Controller
         $values = DB::table('values')
             ->join('attributes', 'values.attribute_id', '=', 'attributes.attribute_id')
             ->join('entity_types', 'values.type_id', '=', 'entity_types.id')
-            ->select('values.id','values.entity_id', 'entity_types.entity_type_label',
-                        'attributes.attribute_label', 'attributes.attribute_id', 'values.value')
+            ->select(
+                'values.id',
+                'values.entity_id',
+                'entity_types.entity_type_label',
+                'attributes.attribute_label',
+                'attributes.attribute_id',
+                'values.value'
+            )
             ->orderBy('values.entity_id')
             ->orderBy('attributes.attribute_id')
             ->get();
-        
+
         $entityTypes = DB::table('entity_types')->get();
 
         $entities = DB::table('entities')->get();
 
-        $attributes = DB::table('attributes')->get(); 
+        $attributes = DB::table('attributes')->get();
 
-        return view('Value.index',compact('values', 'entityTypes',
-                                            'entities', 'attributes'));
+        return view('Value.index', compact(
+            'values',
+            'entityTypes',
+            'entities',
+            'attributes'
+        ));
     }
 
     /**
@@ -57,12 +67,12 @@ class ValueController extends Controller
             'type_id',
             'entity_id',
             'attribute_id',
-            'value']);
-        
+            'value', ]);
+
         Value::create($validated);
-     
+
         return redirect()->route('value.index')
-                        ->with('success','Successful insert!');
+                        ->with('success', 'Successful insert!');
     }
 
     /**
@@ -110,6 +120,6 @@ class ValueController extends Controller
         DB::table('values')->where('id', $id)->delete();
 
         return redirect()->route('value.index')
-                        ->with('success','Successful delete!');
+                        ->with('success', 'Successful delete!');
     }
 }

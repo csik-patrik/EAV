@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Attribute;
-use App\Models\EntityType;
 use App\Http\Requests\StoreAttributeRequest;
 use App\Http\Requests\UpdateAttributeRequest;
+use App\Models\Attribute;
+use App\Models\EntityType;
 
 class AttributeController extends Controller
 {
@@ -20,7 +20,7 @@ class AttributeController extends Controller
 
         $entityTypes = EntityType::all();
 
-        return view('Attribute.index',compact('attributes', 'entityTypes'));
+        return view('Attribute.index', compact('attributes', 'entityTypes'));
     }
 
     /**
@@ -32,11 +32,11 @@ class AttributeController extends Controller
     public function store(StoreAttributeRequest $request)
     {
         $validated = $request->safe()->only(['label', 'type_id']);
-        
+
         Attribute::create($validated);
-     
+
         return redirect()->route('attribute.index')
-                        ->with('success','Successful insert!');
+                        ->with('success', 'Successful insert!');
     }
 
     /**
@@ -62,6 +62,6 @@ class AttributeController extends Controller
         $attribute->delete();
 
         return redirect()->route('attribute.index')
-                        ->with('success','Successful delete!');
+                        ->with('success', 'Successful delete!');
     }
 }
