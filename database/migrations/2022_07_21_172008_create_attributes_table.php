@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('attributes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('label');
+            $table->string('attribute_label');
             $table->unsignedBigInteger('type_id');
             $table->foreign('type_id')->references('id')->on('entity_types');
             $table->timestamps();

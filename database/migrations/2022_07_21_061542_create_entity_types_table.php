@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('entity_types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('label');
+            $table->string('entity_type_label');
             $table->timestamps();
         });
     }
