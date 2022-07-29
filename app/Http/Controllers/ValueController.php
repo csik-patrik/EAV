@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Value;
 use App\Http\Requests\StoreValueRequest;
 use App\Http\Requests\UpdateValueRequest;
-use App\Models\Entity;
-use App\Models\EntityType;
-use App\Models\Attribute;
+use Illuminate\Support\Facades\DB;
 
 class ValueController extends Controller
 {
@@ -18,15 +16,23 @@ class ValueController extends Controller
      */
     public function index()
     {
-        $values = Value::orderBy('entity_id')->get();
+        $values = DB::table('values')
+            ->join('attributes', 'values.attribute_id', '=', 'attributes.id')
+            ->join('entity_types', 'values.type_id', '=', 'entity_types.id')
+            ->select('values.id','values.entity_id', 'entity_types.entity_type_label',
+                        'attributes.attribute_label', 'attributes.id', 'values.value')
+            ->orderBy('values.entity_id')
+            ->orderBy('attributes.id')
+            ->get();
+        
+        $entityTypes = DB::table('entity_types')->get();
 
-        $entityTypes = EntityType::all();
+        $entities = DB::table('entities')->get();
 
-        $entities = Entity::all();
+        $attributes = DB::table('attributes')->get(); 
 
-        $attributes = Attribute::all();
-
-        return view('Value.index',compact('values', 'entityTypes', 'entities', 'attributes'));
+        return view('Value.index',compact('values', 'entityTypes',
+                                            'entities', 'attributes'));
     }
 
     /**
