@@ -27,22 +27,21 @@
 @section('content')
     <div class="container-fluid p-3">
         <div class="row pb-3">
-            <div class="col-md-12">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#insertValueModal">
-                    Assign attribute value to entity
-                </button>
-            </div>
-        </div>
-        <div class="row pb-3">
             <div class="div-lg-12">
                 <h3 class="pl-3">Filters:</h3>
             </div>
             <div class="col-lg-12">
                 @for ($i = 0; $i < count($entityTypes); $i++)
-                <a class="btn btn-primary m-1" href="{{ route('value.show',$entityTypes[$i]->id) }}">{{$entityTypes[$i]->entity_type_label}}</a>
-            @endfor
+                    <a class="btn btn-primary m-1" href="{{ route('value.show',$entityTypes[$i]->id) }}">{{$entityTypes[$i]->entity_type_label}}</a>
+                @endfor
             </div>
-            
+        </div>
+        <div class="row pb-3">
+            <div class="col-lg-12">
+                <button type="button" class=" btn btn-primary" data-toggle="modal" data-target="#insertValueModal">
+                    Assign attribute value to entity
+                </button>
+            </div>
         </div>
         @if ($message = Session::get('success'))
         <div class="row">
