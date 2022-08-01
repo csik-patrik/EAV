@@ -75,6 +75,7 @@
                 <tbody>
                     @for ($i = 0; $i < count($values); $i++)
                         <tr>
+                            
                             <td>{{$values[$i]->entity_id}}</td>
                             <td>{{$values[$i]->entity_type_label}}</td>
                             <td>{{$values[$i]->attribute_label}}</td>
@@ -85,7 +86,7 @@
                                     @csrf
                                     @method('DELETE')
     
-                                    <button type="button" class="btn btn-warning">Modify</button>
+                                    <a href="{{ route('value.edit', $values[$i]->id) }}" class="btn btn-warning">Modify</a>
                     
                                     <button type="submit" onclick="return confirm('Delete value attribute?')" class="btn btn-danger">Delete</button>
                                 </form>

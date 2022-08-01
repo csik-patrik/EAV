@@ -29,16 +29,6 @@ class ValueController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreValueRequest  $request
@@ -88,7 +78,11 @@ class ValueController extends Controller
      */
     public function edit(Value $value)
     {
-        //
+        $entityTypes = DB::table('entity_types')->get();
+
+        $attributes = DB::table('attributes')->get();
+
+        return view('Value.edit', compact('value', 'entityTypes', 'attributes'));
     }
 
     /**
