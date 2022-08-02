@@ -29,7 +29,7 @@ class EntityTypeController extends Controller
      */
     public function store(StoreEntityTypeRequest $request)
     {
-        $validated = $request->safe()->only(['label']);
+        $validated = $request->safe()->only(['entity_type_label']);
 
         EntityType::create($validated);
 

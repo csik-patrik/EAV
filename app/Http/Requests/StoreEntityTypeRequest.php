@@ -24,7 +24,7 @@ class StoreEntityTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'label' => 'required|unique:entity_types|max:50',
+            'entity_type_label' => 'required|unique:entity_types|max:50',
         ];
     }
 }

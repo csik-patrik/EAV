@@ -11,7 +11,7 @@ class EntityType extends Model
 
     protected $table = 'entity_types';
 
-    protected $fillable = ['label'];
+    protected $fillable = ['entity_type_label'];
 
     public function attributes()
     {

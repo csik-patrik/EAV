@@ -79,7 +79,7 @@
                         
                         <div class="form-group">
                             <strong>Entity type label:</strong>
-                            <input type="text" name="label" class="form-control mt-3" placeholder="Label">
+                            <input type="text" name="entity_type_label" class="form-control mt-3" placeholder="Label">
                         </div>
                         <button type="submit" class="btn btn-success">Add</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
