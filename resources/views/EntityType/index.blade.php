@@ -13,7 +13,7 @@
     <div class="container-fluid p-3">
         <div class="row pb-3">
             <div class="col-md-12">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
                     Add Entity Type
                 </button>
             </div>

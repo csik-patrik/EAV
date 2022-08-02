@@ -38,7 +38,7 @@
         </div>
         <div class="row pb-3">
             <div class="col-lg-12">
-                <button type="button" class=" btn btn-primary" data-toggle="modal" data-target="#insertValueModal">
+                <button type="button" class=" btn btn-success" data-toggle="modal" data-target="#insertValueModal">
                     Assign attribute value to entity
                 </button>
             </div>
