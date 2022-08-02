@@ -28,3 +28,5 @@ Route::resource('/attribute', AttributeController::class);
 Route::resource('/entity', EntityController::class);
 
 Route::resource('/value', ValueController::class);
+
+Route::view('/riport-generator', 'RiportGenerator.index');

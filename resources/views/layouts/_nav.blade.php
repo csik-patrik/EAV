@@ -9,7 +9,7 @@
         <a class="nav-item nav-link" href="{{url('entity')}}">Entities</a>
         <a class="nav-item nav-link" href="{{url('attribute')}}">Attributes</a>
         <a class="nav-item nav-link" href="{{url('value')}}">Values</a>
-
+        <a class="nav-item nav-link" href="{{url('riport-generator')}}">Riport Generator</a>
       </div>
     </div>
   </nav>
