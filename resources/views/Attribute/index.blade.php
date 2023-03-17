@@ -41,11 +41,11 @@
                     <tbody>
                         @foreach ($attributes as $attribute)
                         <tr>
-                            <td>{{$attribute->attribute_id}}</td>
+                            <td>{{$attribute->id}}</td>
                             <td>{{$attribute->attribute_label}}</td>
                             <td>{{$attribute->entityType->entity_type_label}}</td>
                             <td>
-                                <form action="{{ route('attribute.destroy',$attribute->attribute_id) }}" method="POST">
+                                <form action="{{ route('attribute.destroy',$attribute->id) }}" method="POST">
     
                                     @csrf
                                     @method('DELETE')

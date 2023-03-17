@@ -37,7 +37,7 @@
                     @else
                         <select name="attribute_id" class="form-control mt-3">
                             @for ($i = 0; $i < count($attributes); $i++)
-                                <option value="{{$attributes[$i]->attribute_id}}">{{$attributes[$i]->attribute_label}}</option>
+                                <option value="{{$attributes[$i]->id}}">{{$attributes[$i]->attribute_label}}</option>
                             @endfor
                         </select>
                     @endif

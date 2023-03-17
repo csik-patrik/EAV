@@ -116,24 +116,24 @@ class ValueController extends Controller
     {
         if ($entity_type_id == null) {
             $values = DB::table('values')
-            ->join('attributes', 'values.attribute_id', '=', 'attributes.attribute_id')
+            ->join('attributes', 'values.attribute_id', '=', 'attributes.id')
             ->join('entity_types', 'values.type_id', '=', 'entity_types.id')
             ->select(
                 'values.id',
                 'values.entity_id',
                 'entity_types.entity_type_label',
                 'attributes.attribute_label',
-                'attributes.attribute_id',
+                'attributes.id',
                 'values.value'
             )
             ->orderBy('values.entity_id')
-            ->orderBy('attributes.attribute_id')
+            ->orderBy('attributes.id')
             ->get();
 
             return $values;
         } else {
             $values = DB::table('values')
-            ->join('attributes', 'values.attribute_id', '=', 'attributes.attribute_id')
+            ->join('attributes', 'values.attribute_id', '=', 'attributes.id')
             ->join('entity_types', 'values.type_id', '=', 'entity_types.id')
             ->select(
                 'values.id',
@@ -141,12 +141,12 @@ class ValueController extends Controller
                 'values.entity_id',
                 'entity_types.entity_type_label',
                 'attributes.attribute_label',
-                'attributes.attribute_id',
+                'attributes.id',
                 'values.value'
             )
             ->where('values.type_id', $entity_type_id)
             ->orderBy('values.entity_id')
-            ->orderBy('attributes.attribute_id')
+            ->orderBy('attributes.id')
             ->get();
 
             return $values;

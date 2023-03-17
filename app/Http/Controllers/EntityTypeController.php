@@ -8,6 +8,7 @@ use App\Models\EntityType;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use Mockery\Exception;
 
 class EntityTypeController extends Controller
 {
@@ -31,12 +32,19 @@ class EntityTypeController extends Controller
      */
     public function store(StoreEntityTypeRequest $request)
     {
-        $validated = $request->safe()->only(['entity_type_label']);
+        try{
+            $validated = $request->safe()->only(['entity_type_label']);
 
-        EntityType::create($validated);
+            EntityType::create($validated);
 
-        return redirect()->route('entity-type.index')
-                        ->with('success', 'Successful insert!');
+            return redirect()->route('entity-type.index')
+                ->with('success', 'Successful insert!');
+        }
+        catch (Exception $exception){
+            return redirect()->route('entity-type.index')
+                ->with('failed', $exception->getMessage());
+        }
+
     }
 
     /**
@@ -59,10 +67,17 @@ class EntityTypeController extends Controller
      */
     public function destroy(EntityType $entityType)
     {
-        $entityType->delete();
+        try{
+            $entityType->delete();
 
-        return redirect()->route('entity-type.index')
-                        ->with('success', 'Successful delete!');
+            return redirect()->route('entity-type.index')
+                ->with('success', 'Successful delete!');
+        }
+        catch (\Illuminate\Database\QueryException $exception){
+            return redirect()->route('entity-type.index')
+                ->with('failed', $exception->getMessage());
+        }
+
     }
 
     public function getAllEntityTypes()
