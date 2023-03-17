@@ -4,6 +4,7 @@ use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\EntityController;
 use App\Http\Controllers\EntityTypeController;
 use App\Http\Controllers\ValueController;
+use App\Http\Livewire\ReportGenerator;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,4 +30,6 @@ Route::resource('/entity', EntityController::class);
 
 Route::resource('/value', ValueController::class);
 
-Route::view('/riport-generator', 'RiportGenerator.index');
+//Route::view('/riport-generator', 'RiportGenerator.index');
+
+Route::get('/report-generator', ReportGenerator::class);

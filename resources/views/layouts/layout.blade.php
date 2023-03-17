@@ -20,6 +20,8 @@
     <body>
         @include('layouts._nav')
 
+        {{ $slot }}
+
         @yield('content')
 
         @livewireScripts
