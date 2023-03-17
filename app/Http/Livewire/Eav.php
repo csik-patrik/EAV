@@ -7,6 +7,7 @@ use App\Models\Entity;
 use App\Models\EntityType;
 use Illuminate\Support\Arr;
 use Livewire\Component;
+use Illuminate\Support\Facades\DB;
 
 class Eav extends Component
 {
@@ -18,11 +19,25 @@ class Eav extends Component
 
     public $attributes;
 
-    public $value;
+
+    public function change()
+    {
+        try{
+            $this->entities = DB::table('entities')->where('type_id', $this->selectedEntityTypeId)->get();
+
+            $this->attributes = DB::table('attributes')->where('type_id', $this->selectedEntityTypeId)->get();
+        }
+        catch(\Illuminate\Database\QueryException $exception){
+
+        }
+    }
 
     public function mount()
     {
-        //dd($this->entities);
+        $this->entities = DB::table('entities')->where('type_id', $this->selectedEntityTypeId)->get();
+
+        $this->attributes = DB::table('attributes')->where('type_id', $this->selectedEntityTypeId)->get();
+
         $this->entityTypes = EntityType::get();
     }
 
@@ -38,13 +53,11 @@ class Eav extends Component
                         <span aria-hidden="true">&times;</span>
                     </button>
                     </div>
-                    <div class="modal-body">
-                        <h1> @json($selectedEntityTypeId) </h1>  
+                    <div class="modal-body"> 
                         <form action="{{ route('value.store') }}" method="POST">
                             @csrf
-                            
                             <strong class="mt-3 mb-3">Entity type:</strong>
-                            <select wire:model="selectedEntityTypeId" name="type_id" class="form-control mt-3">
+                            <select wire:model="selectedEntityTypeId" wire:change="change" name="type_id" class="form-control mt-3">
                                 @for ($i = 0; $i < count($entityTypes); $i++)
                                     <option value="{{$entityTypes[$i]->id}}">{{$entityTypes[$i]->entity_type_label}}</option>
                                 @endfor
