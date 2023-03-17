@@ -32,19 +32,17 @@ class EntityTypeController extends Controller
      */
     public function store(StoreEntityTypeRequest $request)
     {
-        try{
+        try {
             $validated = $request->safe()->only(['entity_type_label']);
 
             EntityType::create($validated);
 
             return redirect()->route('entity-type.index')
                 ->with('success', 'Successful insert!');
-        }
-        catch (Exception $exception){
+        } catch (Exception $exception) {
             return redirect()->route('entity-type.index')
                 ->with('failed', $exception->getMessage());
         }
-
     }
 
     /**
@@ -67,17 +65,15 @@ class EntityTypeController extends Controller
      */
     public function destroy(EntityType $entityType)
     {
-        try{
+        try {
             $entityType->delete();
 
             return redirect()->route('entity-type.index')
                 ->with('success', 'Successful delete!');
-        }
-        catch (\Illuminate\Database\QueryException $exception){
+        } catch (\Illuminate\Database\QueryException $exception) {
             return redirect()->route('entity-type.index')
                 ->with('failed', $exception->getMessage());
         }
-
     }
 
     public function getAllEntityTypes()

@@ -26,8 +26,12 @@ class ValueController extends Controller
 
         $attributes = DB::table('attributes')->get();
 
-        return view('Value.index', compact('values', 'entityTypes',
-            'entities', 'attributes'));
+        return view('Value.index', compact(
+            'values',
+            'entityTypes',
+            'entities',
+            'attributes'
+        ));
     }
 
     /**
@@ -66,9 +70,12 @@ class ValueController extends Controller
 
         $attributes = DB::table('attributes')->get();
 
-        return view('Value.index', compact('values', 'entityTypes',
-            'entities', 'attributes'));
-
+        return view('Value.index', compact(
+            'values',
+            'entityTypes',
+            'entities',
+            'attributes'
+        ));
     }
 
     /**
