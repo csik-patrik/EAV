@@ -26,16 +26,6 @@ class EntityController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  StoreEntityRequest  $request
@@ -43,12 +33,10 @@ class EntityController extends Controller
      */
     public function store(StoreEntityRequest $request)
     {
-        $validated = $request->safe()->only(['type_id']);
-
-        Entity::create($validated);
+        Entity::create($request->all());
 
         return redirect()->route('entity.index')
-                        ->with('success', 'Successful insert!');
+            ->with('success', 'Successful insert!');
     }
 
     /**
