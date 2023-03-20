@@ -32,17 +32,10 @@ class EntityTypeController extends Controller
      */
     public function store(StoreEntityTypeRequest $request)
     {
-        try {
-            $validated = $request->safe()->only(['entity_type_label']);
+        EntityType::create($request->all());
 
-            EntityType::create($validated);
-
-            return redirect()->route('entity-type.index')
-                ->with('success', 'Successful insert!');
-        } catch (Exception $exception) {
-            return redirect()->route('entity-type.index')
-                ->with('failed', $exception->getMessage());
-        }
+        return redirect()->route('entity-type.index')
+            ->with('success', 'Successful insert!');
     }
 
     /**
