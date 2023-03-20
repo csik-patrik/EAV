@@ -10,13 +10,13 @@ class ReportGenerator extends Component
 {
     public $entityTypes;
 
-    public $selectedEntityTypeId = 1;
-
     public $entities;
 
     public $attributes;
 
-    public $reportGenerated = false;
+    public $selectedEntityTypeId = 1;
+
+    public $selectedAttributes = [];
 
     public function change()
     {
@@ -27,6 +27,11 @@ class ReportGenerator extends Component
 
         } catch(\Illuminate\Database\QueryException $exception) {
         }
+    }
+
+    public function submit()
+    {
+        return $this;
     }
 
     public function mount()
@@ -40,9 +45,6 @@ class ReportGenerator extends Component
 
     public function render()
     {
-        if(!$this->reportGenerated){
-            return view('livewire.report-generator');
-        }
-
+        return view('livewire.report-generator');
     }
 }
