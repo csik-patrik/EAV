@@ -18,6 +18,18 @@
                 </button>
             </div>
         </div>
+        @error('entity_type_label')
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert" >
+                        <p>{{ $message }}</p>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        @enderror
         @if ($message = Session::get('success'))
             <div class="row">
                 <div class="col-md-12">
@@ -63,7 +75,7 @@
                                     @csrf
                                     @method('DELETE')
     
-                                    <button type="button" class="btn btn-warning">Modify</button>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Modify</button>
                     
                                     <button type="submit" onclick="return confirm('Delete {{$entityType->label}} entity type?')" class="btn btn-danger">Delete</button>
                                 </form>
@@ -78,30 +90,10 @@
         @endif
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add new entity type</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('entity-type.store') }}" method="POST">
-                        @csrf
-                        
-                        <div class="form-group">
-                            <strong>Entity type label:</strong>
-                            <input type="text" name="entity_type_label" class="form-control mt-3" placeholder="Label">
-                        </div>
-                        <button type="submit" class="btn btn-success">Add</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Create entity type modal -->
+    @include('Modals.EntityType.create')
+
+    <!-- Update entity type modal -->
+    @include('Modals.EntityType.update')
     
 @endsection
