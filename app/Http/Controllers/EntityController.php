@@ -40,28 +40,6 @@ class EntityController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  Entity  $entity
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Entity $entity)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  Entity  $entity
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Entity $entity)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  UpdateEntityRequest  $request
