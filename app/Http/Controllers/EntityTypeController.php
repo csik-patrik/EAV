@@ -68,9 +68,4 @@ class EntityTypeController extends Controller
                 ->with('failed', $exception->getMessage());
         }
     }
-
-    public function getAllEntityTypes()
-    {
-        return DB::table('entity_types')->get();
-    }
 }
