@@ -28,6 +28,7 @@ class ReportGenerator extends Component
     {
         $this->values = Value::where('type_id', $this->selectedEntityTypeId)
             ->whereIn('attribute_id', $this->selectedAttributes)
+            ->orderBy('entity_id')
             ->get();
 
         $this->attributes = $this->values->pluck('attribute')->unique();

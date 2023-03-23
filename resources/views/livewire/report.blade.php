@@ -8,23 +8,23 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        @foreach($values as $value)
-            <th scope="col">{{$value->entity_id}}</th>
-        @endforeach
-
-    </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-    </tr>
+    @php
+        $tempId = $values[0]->entity_id;
+    @endphp
+    @for($i = 0; $i < count($values); $i++)
+        @if($i == 0)
+            <tr>
+                <td>{{$values[$i]->entity_id}}</td>
+        @endif
+        @if($values[$i]->entity_id != $tempId && $i != 0)
+            </tr>
+            <tr>
+                <td>{{$values[$i]->entity_id}}</td>
+            @php
+                $tempId = $values[$i]->entity_id;
+            @endphp
+        @endif
+        <td>{{$values[$i]->value}}</td>
+    @endfor
     </tbody>
 </table>
