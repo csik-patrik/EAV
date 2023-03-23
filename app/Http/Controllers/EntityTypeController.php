@@ -6,9 +6,7 @@ use App\Http\Requests\StoreEntityTypeRequest;
 use App\Http\Requests\UpdateEntityTypeRequest;
 use App\Models\EntityType;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
-use Mockery\Exception;
 
 class EntityTypeController extends Controller
 {
