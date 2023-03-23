@@ -3,40 +3,32 @@
 namespace App\Http\Livewire;
 
 use App\Models\Attribute;
-use App\Models\Entity;
 use App\Models\EntityType;
-use Illuminate\Support\Facades\DB;
+use App\Models\Value;
 use Livewire\Component;
 
 class ReportGenerator extends Component
 {
     public $entityTypes;
-
-    public $entities;
-
-    public $attributes;
-
     public $selectedEntityTypeId = 1;
     public $selectedAttributes = [];
-
     public $reportGenerated = false;
 
     public function change()
     {
-        try {
+        $this->selectedAttributes = [];
 
-            $this->selectedAttributes = [];
-
-            $this->entities = Entity::where('type_id', $this->selectedEntityTypeId)->get();
-
-            $this->attributes = Attribute::where('type_id', $this->selectedEntityTypeId)->get();
-
-        } catch(\Illuminate\Database\QueryException $exception) {
-
-        }
+        $this->attributes = Attribute::where('type_id', $this->selectedEntityTypeId)->get();
     }
 
-    public function generate(){
+    public function generate()
+    {
+        $this->values = Value::where('type_id', $this->selectedEntityTypeId)
+            ->whereIn('attribute_id', $this->selectedAttributes)
+            ->get();
+
+        $this->attributes = $this->values->pluck('attribute')->unique();
+
         $this->reportGenerated = true;
     }
 
@@ -47,9 +39,11 @@ class ReportGenerator extends Component
 
     public function render()
     {
-        if(!$this->reportGenerated){
-            return view('livewire.report-generator');
-        }
-        return view('livewire.report-generated');
+        $view = $this->reportGenerated ? 'Reports.report' : 'livewire.report-generator';
+
+        return view($view, [
+            'values' => $this->values ?? collect(),
+            'attributes' => $this->attributes ?? collect()
+        ]);
     }
 }
