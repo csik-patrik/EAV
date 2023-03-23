@@ -111,9 +111,9 @@ class ValueController extends Controller
      * @param  Value  $value
      * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Value $value)
     {
-        DB::table('values')->where('id', $id)->delete();
+        $value->delete();
 
         return redirect()->route('value.index')
                         ->with('success', 'Successful delete!');

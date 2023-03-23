@@ -65,6 +65,7 @@
                 data-resizable="true">
                 <thead>
                         <tr>
+                            <th data-sortable="true">Id</th>
                             <th data-sortable="true">Entity Id</th>
                             <th data-sortable="true">Entity Type</th>
                             <th data-sortable="true">Attribute</th>
@@ -73,26 +74,26 @@
                         </tr>
                 </thead>
                 <tbody>
-                    @for ($i = 0; $i < count($values); $i++)
+                    @foreach($values as $value)
                         <tr>
-                            
-                            <td>{{$values[$i]->entity_id}}</td>
-                            <td>{{$values[$i]->entity_type_label}}</td>
-                            <td>{{$values[$i]->attribute_label}}</td>
-                            <td>{{$values[$i]->value}}</td>
+                            <td>{{$value->id}}</td>
+                            <td>{{$value->entity_id}}</td>
+                            <td>{{$value->entity_type_label}}</td>
+                            <td>{{$value->attribute_label}}</td>
+                            <td>{{$value->value}}</td>
                             <td>
-                                <form action="{{ route('value.destroy', $values[$i]->id) }}" method="POST">
+                                <form action="{{ route('value.destroy', $value->id) }}" method="POST">
     
                                     @csrf
                                     @method('DELETE')
     
-                                    <a href="{{ route('value.edit', $values[$i]->id) }}" class="btn btn-warning">Modify</a>
+                                    <a href="{{ route('value.edit', $value->id) }}" class="btn btn-warning">Modify</a>
                     
                                     <button type="submit" onclick="return confirm('Delete value attribute?')" class="btn btn-danger">Delete</button>
                                 </form>
                             </td>
                         </tr>
-                    @endfor 
+                    @endforeach
                 </tbody>
             </table>
         </div>
