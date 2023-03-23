@@ -20,7 +20,7 @@ class ValueController extends Controller
     {
         //$values = $this->getValuesByEntityId(null);
 
-        $values = Value::get();
+        $values = Value::orderBy('entity_id')->orderBy('attribute_id')->get();
 
         $entityTypes = DB::table('entity_types')->get();
 

@@ -65,7 +65,6 @@
                 data-resizable="true">
                 <thead>
                         <tr>
-                            <th data-sortable="true">Id</th>
                             <th data-sortable="true">Entity Id</th>
                             <th data-sortable="true">Entity Type</th>
                             <th data-sortable="true">Attribute</th>
@@ -76,7 +75,6 @@
                 <tbody>
                     @foreach($values as $value)
                         <tr>
-                            <td>{{$value->id}}</td>
                             <td>{{$value->entity_id}}</td>
                             <td>{{$value->entityType->entity_type_label}}</td>
                             <td>{{$value->attribute->attribute_label}}</td>
