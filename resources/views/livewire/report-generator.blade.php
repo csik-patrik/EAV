@@ -1,4 +1,5 @@
 <div class="container p-3">
+    @if($values == null)
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <strong class="mt-3 mb-3">Entity type:</strong>
@@ -16,7 +17,6 @@
                 </select>
             </div>
         </div>
-
         <div class="row mb-2">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 @if(is_null($attributes))
@@ -47,4 +47,10 @@
                 <button type="submit" class="btn btn-success" wire:click="generate">Generate report</button>
             </div>
         </div>
+    @endif
+
+    <!-- Generated report-->
+    @if($values != null)
+        @include('livewire.report')
+    @endif
 </div>

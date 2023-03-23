@@ -12,7 +12,10 @@ class ReportGenerator extends Component
     public $entityTypes;
     public $selectedEntityTypeId = 1;
     public $selectedAttributes = [];
-    public $reportGenerated = false;
+
+    public $attributes;
+
+    public $values;
 
     public function change()
     {
@@ -29,7 +32,6 @@ class ReportGenerator extends Component
 
         $this->attributes = $this->values->pluck('attribute')->unique();
 
-        $this->reportGenerated = true;
     }
 
     public function mount()
@@ -39,11 +41,6 @@ class ReportGenerator extends Component
 
     public function render()
     {
-        $view = $this->reportGenerated ? 'Reports.report' : 'livewire.report-generator';
-
-        return view($view, [
-            'values' => $this->values ?? collect(),
-            'attributes' => $this->attributes ?? collect()
-        ]);
+        return view('livewire.report-generator');
     }
 }
