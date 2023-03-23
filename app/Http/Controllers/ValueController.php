@@ -18,7 +18,9 @@ class ValueController extends Controller
      */
     public function index()
     {
-        $values = $this->getValuesByEntityId(null);
+        //$values = $this->getValuesByEntityId(null);
+
+        $values = Value::get();
 
         $entityTypes = DB::table('entity_types')->get();
 
@@ -62,7 +64,9 @@ class ValueController extends Controller
      */
     public function show($entity_type_id)
     {
-        $values = $this->getValuesByEntityId($entity_type_id);
+        //$values = $this->getValuesByEntityId($entity_type_id);
+
+        $values = Value::get();
 
         $entityTypes = DB::table('entity_types')->get();
 

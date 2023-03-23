@@ -78,8 +78,8 @@
                         <tr>
                             <td>{{$value->id}}</td>
                             <td>{{$value->entity_id}}</td>
-                            <td>{{$value->entity_type_label}}</td>
-                            <td>{{$value->attribute_label}}</td>
+                            <td>{{$value->entityType->entity_type_label}}</td>
+                            <td>{{$value->attribute->attribute_label}}</td>
                             <td>{{$value->value}}</td>
                             <td>
                                 <form action="{{ route('value.destroy', $value->id) }}" method="POST">
