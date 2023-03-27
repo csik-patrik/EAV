@@ -10,14 +10,14 @@ use Livewire\Component;
 class ReportGenerator extends Component
 {
     public $entityTypes;
-    public $selectedEntityTypeId = 1;
+    public $selectedEntityTypeId;
     public $selectedAttributes = [];
 
     public $attributes;
 
     public $values;
 
-    public function change()
+    public function changeSelectedEntityType()
     {
         $this->selectedAttributes = [];
 
@@ -31,7 +31,11 @@ class ReportGenerator extends Component
             ->orderBy('entity_id')
             ->get();
 
+        // Get all the unique attributes from the values collection.
         $this->attributes = $this->values->pluck('attribute')->unique();
+
+        // Serialize the indexing of the collection.
+        $this->attributes = $this->attributes->values();
 
     }
 

@@ -8,9 +8,10 @@
         <div class="row mb-2">
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <select wire:model="selectedEntityTypeId"
-                        wire:change="change"
+                        wire:change="changeSelectedEntityType"
                         name="type_id"
                         class="form-control mt-3">
+                    <option selected>Select entity type!</option>
                     @foreach($entityTypes as $type)
                         <option value="{{$type->id}}">{{$type->entity_type_label}}</option>
                     @endforeach
