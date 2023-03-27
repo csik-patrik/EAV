@@ -11,7 +11,7 @@
                 <form action="{{ route('value.store') }}" method="POST">
                     @csrf
                     <strong class="mt-3 mb-3">Entity type:</strong>
-                    <select wire:model="selectedEntityTypeId" wire:change="change" name="type_id" class="form-control mt-3">
+                    <select wire:model="selectedEntityTypeId" wire:change="selectEntityType" name="type_id" class="form-control mt-3">
                         @for ($i = 0; $i < count($entityTypes); $i++)
                             <option value="{{$entityTypes[$i]->id}}">{{$entityTypes[$i]->entity_type_label}}</option>
                         @endfor

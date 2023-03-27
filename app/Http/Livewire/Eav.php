@@ -17,13 +17,14 @@ class Eav extends Component
     public $attributes;
 
 
-    public function change()
+    public function selectEntityType()
     {
         try {
             $this->entities = DB::table('entities')->where('type_id', $this->selectedEntityTypeId)->get();
 
             $this->attributes = DB::table('attributes')->where('type_id', $this->selectedEntityTypeId)->get();
         } catch(\Illuminate\Database\QueryException $exception) {
+
         }
     }
 
