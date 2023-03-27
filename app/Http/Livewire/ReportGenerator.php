@@ -36,7 +36,6 @@ class ReportGenerator extends Component
 
         // Serialize the indexing of the collection.
         $this->attributes = $this->attributes->values();
-
     }
 
     public function mount()
