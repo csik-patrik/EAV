@@ -17,7 +17,7 @@ class EntityTypeController extends Controller
      */
     public function index()
     {
-        $entityTypes = EntityType::all();
+        $entityTypes = EntityType::orderBy('entity_type_label')->get();
 
         return view('EntityType.index', compact('entityTypes'));
     }

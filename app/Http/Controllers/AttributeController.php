@@ -18,7 +18,9 @@ class AttributeController extends Controller
      */
     public function index()
     {
-        $attributes = Attribute::all();
+        $attributes = Attribute::orderBy('type_id')
+            ->orderBy('attribute_label')
+            ->get();
 
         $entityTypes = EntityType::all();
 
