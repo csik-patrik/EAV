@@ -75,7 +75,7 @@
                                     @csrf
                                     @method('DELETE')
     
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">Modify</button>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updateEntityTypeModal">Modify</button>
                     
                                     <button type="submit" onclick="return confirm('Delete {{$entityType->label}} entity type?')" class="btn btn-danger">Delete</button>
                                 </form>
