@@ -1,6 +1,7 @@
 @if(count($values)==0)
     <h1>There are 0 records for these parameters!</h1>
 @else
+    <h1>Report of {{$selectedEntityType[0]->entity_type_label}}'s in the database:</h1>
     <table class="table">
         <thead class="thead-dark">
         <tr>

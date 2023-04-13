@@ -10,7 +10,10 @@ use Livewire\Component;
 class ReportGenerator extends Component
 {
     public $entityTypes;
+
     public $selectedEntityTypeId;
+
+    public $selectedEntityType;
     public $selectedAttributes = [];
 
     public $attributes;
@@ -22,6 +25,8 @@ class ReportGenerator extends Component
         $this->selectedAttributes = [];
 
         $this->attributes = Attribute::where('type_id', $this->selectedEntityTypeId)->get();
+
+        $this->selectedEntityType = EntityType::where('id', $this->selectedEntityTypeId)->get();
     }
 
     public function generate()
